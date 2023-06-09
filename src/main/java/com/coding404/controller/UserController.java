@@ -1,13 +1,14 @@
 package com.coding404.controller;
 
-import com.coding404.sevice.UserService;
-import com.coding404.sevice.UserServiceImpl;
+import com.coding404.user.sevice.UserService;
+import com.coding404.user.sevice.UserServiceImpl;
 import com.coding404.user.model.UserVO;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebServlet("*.user")
 public class UserController extends HttpServlet {
@@ -39,8 +40,10 @@ public class UserController extends HttpServlet {
         String command = uri.substring(conPath.length());
         //필요한 객체를 if문 위에 선언
         UserService service = new UserServiceImpl(); //인터페이스가 있다면 다형성을 이용해서 자식타입을 부모타입으로
-
-//        System.out.println(command); 주소 확인 -> 삭제해도 OK
+        // 세션
+        //세션에 회원정보를 저장 ( 자바에서 세션얻는 방법 ) - 암기
+        HttpSession session = request.getSession();
+        System.out.println(command); // 주소를 확인한다
 
         // ** MVC2에서는 화면을 띄우는 요청도 컨트롤러를 거쳐 나가도록 처리
         // ** 기본이동이 전부 forward형식으로 처리한다
@@ -84,9 +87,7 @@ public class UserController extends HttpServlet {
                 request.getRequestDispatcher("user_login.jsp").forward(request, response);
 
             } else { // 로그인 성공
-                //세션에 회원정보를 저장 ( 자바에서 세션얻는 방법 ) - 암기
                 // .getSession -> 현재 접속되어 있는 Session을 반환해 준다
-                HttpSession session = request.getSession();
                 session.setAttribute("user_id", vo.getId());
                 session.setAttribute("user_name", vo.getName());
 
@@ -96,9 +97,59 @@ public class UserController extends HttpServlet {
         } else if (command.equals("/user/user_mypage.user")) { // 회원 페이지로 이동
             request.getRequestDispatcher("user_mypage.jsp").forward(request, response);
 
+        //로그아웃 - 인증수단을 삭제
         } else if (command.equals("/user/user_logout.user")) { // 로그아웃 페이지로 이동
+            //모든 세션 무효화
+            session.invalidate();
+            // 로그인 화면으로 이동
+            response.sendRedirect("user_login.user");
+            
+        //정보 수정페이지
+        } else if (command.equals("/user/user_modify.user")) {
+            //회원정보를 가지고 간다
+            // getInfo로 vo를 반환 받아 request에 태워 보낸다
+            UserVO vo = service.getInfo(request, response);
+            // 서비스의 getInfo를 호출하여 반환받은 vo를 request에 태워서 forward
+            request.setAttribute("vo", vo);
+            request.getRequestDispatcher("user_modify.jsp").forward(request, response);
 
-            request.getRequestDispatcher("user_logout.jsp").forward(request, response);
+        //정보 수정
+        } else if (command.equals("/user/user_update.user")) {
+
+            int result = service.updateInfo(request, response);
+
+            if(result == 1){ // 성공(유저 닉네임 변경)
+                // request에서 name을 가져와서 session의 user_name을 변경
+                String name = request.getParameter("name");
+                session.setAttribute("user_name", name);
+
+                //out객체를 이용한 메세지 전달 : 자바 스크립트
+                // out의 컨텐츠 타입을 지정 : html , utf-8 임을 나타낸다
+                response.setContentType("text/html; charset = UTF-8; ");
+                PrintWriter out = response.getWriter();
+                out.println("<script>");
+                out.println("alert('안녕하세요');");
+                out.println("location.href='user_mypage.user'; ");
+                out.println("</script>");
+
+            } else { // 실패
+                response.sendRedirect("user_modify.user");
+            }
+
+        } else if (command.equals("user/user_delete.user")) {
+
+            int result = service.delete(request, response);
+
+            if(result == 1 ){
+                response.setContentType("text/html; charset = UTF-8;");
+                PrintWriter out = response.getWriter();
+                out.println("<script>");
+                out.println("alert('탈퇴되었습니다');");
+                out.println("location.href='../../';");
+                out.println("</script>");
+            } else {
+                response.sendRedirect("user_mypage.user");
+            }
         }
     }
 }

@@ -148,4 +148,112 @@ public class UserDAO {
         }
         return vo;
     } //login 메서드 끝
+
+    //회원정보 조회
+    public UserVO getInfo(String id){
+
+        UserVO vo = null;
+
+        String sql = "SELECT * FROM users WHERE id =  ?";
+
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try {
+            conn = DriverManager.getConnection(url, uid, upw);
+
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, id); //id는 pk -> 무조건 1행이다
+
+            rs = pstmt.executeQuery();
+
+            if(rs.next()){ // id는 pk 라서 1행
+                // 필요한 정보를 가지고 나온다
+                String id2 = rs.getString("id");
+                String name = rs.getString("name");
+                String email = rs.getString("email");
+                String gender = rs.getString("gender");
+                // vo에 객체를 담음
+                vo = new UserVO(id2, null, name, email, gender, null);
+            }
+
+        } catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            try {
+                conn.close();
+                pstmt.close();
+                rs.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return vo;
+    }
+
+    //회원정보 수정
+    public int updateInfo(UserVO vo){
+        int result = 0;
+
+        String sql = "UPDATE users SET PW = ?, NAME = ?, EMAIL = ?, GENDER = ? WHERE id = ?";
+
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+
+        try {
+            conn = DriverManager.getConnection(url, uid, upw);
+
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, vo.getPw());
+            pstmt.setString(2, vo.getName());
+            pstmt.setString(3, vo.getEmail());
+            pstmt.setString(4, vo.getGender());
+            pstmt.setString(5, vo.getId());
+
+            result = pstmt.executeUpdate(); // 성공시 1, 실패시 0
+
+        } catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            try {
+                conn.close();
+                pstmt.close();
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
+        }
+        return  result;
+    }
+
+    //회원 탈퇴
+    public int delete(String id){
+        int result = 0;
+
+        String sql = "DELETE FROM users WHERE id = ?";
+
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+
+        try {
+            conn = DriverManager.getConnection(url, uid, upw);
+
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, id);
+
+            result = pstmt.executeUpdate();
+
+        } catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            try {
+                conn.close();
+                pstmt.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        return result;
+    }
 }

@@ -1,0 +1,56 @@
+
+h	java:S112½"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8ı‹Œñ‰1
+h	java:S112ı"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8ş‹Œñ‰1
+`
+java:S1163½"=Refactor this code to not throw exceptions in finally blocks.(Ò‚Òéüÿÿÿÿ8ÿ‹Œñ‰1
+`
+java:S1163ı"=Refactor this code to not throw exceptions in finally blocks.(Ò‚Òéüÿÿÿÿ8ÿ‹Œñ‰1
+W
+java:S1143½"4Remove this throw statement from this finally block.(Ò‚Òéüÿÿÿÿ8ÿ‹Œñ‰1
+W
+java:S1143ı"4Remove this throw statement from this finally block.(Ò‚Òéüÿÿÿÿ8ÿ‹Œñ‰1
+f
+java:S2259û"CA "NullPointerException" could be thrown; "pstmt" is nullable here.(üÒ‡¿ÿÿÿÿÿ8êŒŒñ‰1
+e
+java:S2259ú"BA "NullPointerException" could be thrown; "conn" is nullable here.(…¤© ÿÿÿÿÿ8ìŒŒñ‰1
+^
+java:S2259"@A "NullPointerException" could be thrown; "rs" is nullable here.(ÅÌ”Ù8êŒŒñ‰1
+e
+java:S2259B"CA "NullPointerException" could be thrown; "pstmt" is nullable here.(üÒ‡¿ÿÿÿÿÿ8êŒŒñ‰1
+e
+java:S2259"BA "NullPointerException" could be thrown; "conn" is nullable here.(…¤© ÿÿÿÿÿ8ëŒŒñ‰1
+^
+java:S2259»"@A "NullPointerException" could be thrown; "rs" is nullable here.(ÅÌ”Ù8ëŒŒñ‰1
+f
+java:S2259º"CA "NullPointerException" could be thrown; "pstmt" is nullable here.(üÒ‡¿ÿÿÿÿÿ8ëŒŒñ‰1
+d
+java:S2259a"BA "NullPointerException" could be thrown; "conn" is nullable here.(…¤© ÿÿÿÿÿ8êŒŒñ‰1
+e
+java:S2259¹"BA "NullPointerException" could be thrown; "conn" is nullable here.(…¤© ÿÿÿÿÿ8ëŒŒñ‰1
+e
+java:S2259b"CA "NullPointerException" could be thrown; "pstmt" is nullable here.(üÒ‡¿ÿÿÿÿÿ8êŒŒñ‰1
+f
+java:S2259İ"CA "NullPointerException" could be thrown; "pstmt" is nullable here.(üÒ‡¿ÿÿÿÿÿ8êŒŒñ‰1
+f
+java:S2259"CA "NullPointerException" could be thrown; "pstmt" is nullable here.(üÒ‡¿ÿÿÿÿÿ8ëŒŒñ‰1
+e
+java:S2259Ü"BA "NullPointerException" could be thrown; "conn" is nullable here.(…¤© ÿÿÿÿÿ8ëŒŒñ‰1
+]
+java:S2259C"@A "NullPointerException" could be thrown; "rs" is nullable here.(ÅÌ”Ù8êŒŒñ‰1
+d
+java:S2259A"BA "NullPointerException" could be thrown; "conn" is nullable here.(…¤© ÿÿÿÿÿ8êŒŒñ‰1
+m
+java:S2095Ï"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ä×Óù8ìŒŒñ‰1
+l
+java:S2095w"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ä×Óù8ìŒŒñ‰1
+l
+java:S20950"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ä×Óù8ìŒŒñ‰1
+l
+java:S2095T"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ä×Óù8ìŒŒñ‰1
+¶
+java:S6548"˜A Singleton implementation was detected. Make sure the use of the Singleton pattern is required and the implementation is the right one for the context.(ÁÇæÅ8îŒŒñ‰1
+J
+java:S4925"-Remove this "Class.forName()", it is useless.(ùíÄé8òŒŒñ‰1
+E	java:S108")Either remove or fill this block of code.(”ı¾8óŒŒñ‰1
+E	java:S108D")Either remove or fill this block of code.(Á¡ÆÃ8õŒŒñ‰1
+E	java:S108c")Either remove or fill this block of code.(Á¡ÆÃ8÷ŒŒñ‰1

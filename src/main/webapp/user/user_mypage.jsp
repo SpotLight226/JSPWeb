@@ -8,8 +8,8 @@
         (${sessionScope.user_name}) 님의 정보를 관리중입니다
 
         <br>
-        <a href="#">회원 수정</a>
-        <a href="#">회원 탈퇴</a>
+        <a href="user_modify.user">회원 수정</a>
+        <a href="user_delete.user">회원 탈퇴</a>
         <a href="user_logout.user">로그 아웃</a>
 
     </div>
