@@ -1,0 +1,9 @@
+
+~
+java:S1488"\Immediately return this expression instead of assigning it to the temporary variable "list".(ÍËÔòùÿÿÿÿ8ãÂ×çŠ1
+w
+java:S1488+"ZImmediately return this expression instead of assigning it to the temporary variable "vo".(‡¼ÆŠ8äÂ×çŠ1
+T
+java:S1854@"7Remove this useless assignment to local variable "bno".( “âù8íÂ×çŠ1
+E
+java:S1481@"(Remove this unused "bno" local variable.( “âù8íÂ×çŠ1

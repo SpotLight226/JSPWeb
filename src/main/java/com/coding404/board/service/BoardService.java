@@ -21,5 +21,5 @@ public interface BoardService {
     void update(HttpServletRequest request, HttpServletResponse response);
 
     //글 삭제
-    void delete();
+    void delete(HttpServletRequest request, HttpServletResponse response);
 }

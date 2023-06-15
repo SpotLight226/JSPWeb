@@ -5,6 +5,7 @@ import com.coding404.board.model.BoardVO;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 public class BoardServiceImpl implements BoardService{
@@ -58,7 +59,9 @@ public class BoardServiceImpl implements BoardService{
     } // update 끝
 
     @Override
-    public void delete() {
+    public void delete(HttpServletRequest request, HttpServletResponse response) {
+
+        String bno = request.getParameter("bno");
 
     }
 }

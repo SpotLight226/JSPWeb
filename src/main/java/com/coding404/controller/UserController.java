@@ -53,7 +53,7 @@ public class UserController extends HttpServlet {
         if (command.equals("/user/user_join.user")) {
             // forward로 나가는 주소는 실제 파일의 위치(절대 경로)로 작성한다
             request.getRequestDispatcher("user_join.jsp").forward(request, response);
-
+        //로그인
         } else if (command.equals("/user/user_login.user")) {
             request.getRequestDispatcher("user_login.jsp").forward(request, response);
 
@@ -106,6 +106,13 @@ public class UserController extends HttpServlet {
             
         //정보 수정페이지
         } else if (command.equals("/user/user_modify.user")) {
+//            // session의 id가 비어있다면 modify페이지에 들어갈 수 없다 :  필터
+//            // 하지만, 이런 식으로 제어하면 비효율적이다 -> 로그인해야 들어갈 수 있는 페이지 마다 작성해주어야 함
+//            if(session.getAttribute("user_Id") == null ) {
+//                response.sendRedirect("user_login.user");
+//                return;
+//            }
+
             //회원정보를 가지고 간다
             // getInfo로 vo를 반환 받아 request에 태워 보낸다
             UserVO vo = service.getInfo(request, response);
@@ -113,7 +120,7 @@ public class UserController extends HttpServlet {
             request.setAttribute("vo", vo);
             request.getRequestDispatcher("user_modify.jsp").forward(request, response);
 
-        //정보 수정
+            //정보 수정
         } else if (command.equals("/user/user_update.user")) {
 
             int result = service.updateInfo(request, response);
